@@ -1,0 +1,31 @@
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server:latest
+    container_name: clickhouse
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    env_file:
+      - .env
+    volumes:
+      - clickhouse_data:/var/lib/clients
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  validator-health:
+    build: .
+    container_name: validator-health
+    depends_on:
+      - clickhouse
+      - redis
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+
+volumes:
+  clickhouse_data:

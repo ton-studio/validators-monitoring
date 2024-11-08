@@ -1,0 +1,448 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Nunito', sans-serif;
+    background-color: #f0f4f7;
+    color: #333;
+}
+
+/* Header */
+header {
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 a {
+    font-size: 22px;
+    font-weight: 700;
+    color: #001321;
+    text-decoration: none;
+    position: relative;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Nunito', sans-serif;
+    background-color: #f0f4f7;
+    color: #333;
+}
+
+/* Header */
+header {
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 a {
+    font-size: 22px;
+    font-weight: 700;
+    color: #001321;
+    text-decoration: none;
+    position: relative;
+}
+
+#container {
+    max-width: 1300px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+#controls {
+    display: inline-flex;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+#controls label {
+    font-weight: 600;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+#controls .presets {
+    display: inline-block;
+}
+
+#controls .preset-button {
+    padding: 10px 20px;
+    color: #888;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#controls .preset-button.active,
+#controls .preset-button:hover {
+    background-color: #768B96;
+    color: #fff;
+}
+
+#controls button:hover {
+    background-color: #001321;
+    color: #fff;
+}
+
+/* Validator List Section */
+#validator-list {
+    margin-top: 20px;
+    min-width: 1200px;
+    max-width: 1280px;
+}
+
+#validator-list h2 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #768B96;
+    text-transform: uppercase;
+}
+
+/* Validator Table */
+.validator-table {
+    width: 1200px;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.validator-table tr th {
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.validator-table th, .validator-table td {
+    padding: 10px;
+    text-align: left;
+    color: #333;
+}
+
+.validator-table th {
+    background-color: #f0f4f7;
+    font-weight: 600;
+}
+
+
+.validator-table td a {
+    text-decoration: none;
+    font-family: monospace;
+    cursor: pointer;
+}
+
+.validator-table .validator__stake {
+    color: #001321;
+}
+
+.validator-table .validator__weight {
+    font-size: 10px;
+    color: gray;
+    display: block;
+    font-weight: bold;
+}
+
+.validator__efficiency {
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px;
+    position: relative;
+    width: 60px;
+    margin: auto;
+    display: block;
+    text-align: center;
+}
+
+.validator__efficiency.error {
+    color: rgb(255, 0, 0);
+    background-color: rgba(255, 0, 0, 0.2);
+}
+
+.validator__efficiency.warn {
+    color: rgb(255, 230, 0);
+    background-color: rgba(255, 230, 0, 0.2);
+}
+
+.validator__efficiency.ok {
+    color: #06b106;
+    background-color: rgba(0, 230, 0, 0.2);
+}
+
+.validator-table .validator__adnl {
+    color: #001321;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.validator-table .validator__wallet {
+    display: block;
+    font-size: 10px;
+    color: gray;
+}
+
+.validator-table td a:hover {
+    text-decoration: underline;
+}
+
+.stake-value:hover::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-size: 10px;
+    margin-bottom: 10px;
+    margin-right: 8px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+#chart-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+#timeline {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+#timelineContent {
+    position: relative;
+    margin-top: 20px;
+}
+
+#timelineContent::before {
+    content: '';
+    position: absolute;
+    left: 29px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #808080;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-icon {
+    position: absolute;
+    left: 30px;
+    transform: translateX(-50%);
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #768B96;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.timeline-icon.ok {
+    color: white;
+    background-color: #4CAF50;
+}
+
+.timeline-icon.fail {
+    color: white;
+    background-color: #E53935;
+}
+
+.timeline-content {
+    margin-left: 50px;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.timeline-duration {
+    font-size: 12px;
+    color: #9E9E9E;
+    margin-top: 5px;
+}
+
+.timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.subscribe-button {
+    background-color: #e53935;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.subscribe-button:hover {
+    background-color: #d32f2f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Nunito', sans-serif;
+    background-color: #fff;
+    color: #333;
+}
+
+header h1 a {
+    font-size: 28px;
+    font-weight: 700;
+    color: #001321;
+    text-decoration: none;
+}
+
+#controls label {
+    font-weight: 600;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+#controls .date-input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #9ca3af;
+    border-radius: 8px;
+    background-color: #f9fafb;
+    color: #333;
+    width: 100%;
+    max-width: 150px;
+    font-size: 14px;
+}
+
+#controls .cycle-id-input {
+    padding: 10px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    border: 1px solid #9ca3af;
+    border-radius: 8px;
+    background-color: #f9fafb;
+    color: #333;
+    width: 100%;
+    max-width: 150px;
+    font-size: 14px;
+}
+
+#controls .presets {
+    display: inline-block;
+}
+
+#controls button {
+    padding: 10px 16px;
+    background-color: #e5e7eb;
+    color: #333;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+#controls .preset-button.active,
+#controls .preset-button:hover {
+    background-color: #768B96;
+    color: #fff;
+}
+
+
+#controls button:hover {
+    background-color: #001321;
+}
+
+/* Status bars */
+.status-bars {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.status-bar {
+    cursor: pointer;
+    width: 6px;
+    height: 24px;
+    margin-right: 2px;
+    border-radius: 4px;
+    background-color: #10b981;
+    position: relative;
+}
+
+.status-bar.bad {
+    background-color: #ef4444;
+}
+
+.status-bar.no-data {
+    background-color: #9ca3af;
+}
+
+th.sortable {
+    cursor: pointer;
+}
+
+th.sortable:after {
+    content: ' ⇵';
+}
+
+/* Tooltip */
+.status-bar:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-size: 12px;
+    margin-bottom: 5px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: #6b7280;
+}

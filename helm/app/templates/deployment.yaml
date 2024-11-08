@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}-{{ .Values.deployEnv}}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ .Values.appName }}-{{ .Values.deployEnv }}
+    release: prometheus-stack
+spec:
+  replicas: {{ .Values.defaultReplicaCount }}
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}-{{ .Values.deployEnv}}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}-{{ .Values.deployEnv}}
+        release: prometheus-stack
+    spec:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              app: {{ .Values.appName }}-{{ .Values.deployEnv }}
+{{/*          matchLabelKeys:*/}}
+{{/*            - pod-template-hash*/}}
+      containers:
+        - name: {{ .Values.appName }}-{{ .Values.deployEnv}}
+          image: "{{  .Values.imageRepo }}:{{ .Values.imageTag }}"
+          env:
+            - name: CYCLE_API_URL
+              value: {{ .Values.env.cycleApiUrl | quote }}
+            - name: SCOREBOARD_API_URL
+              value: {{ .Values.env.scoreboardApiUrl | quote }}
+            - name: EFFICIENCY_THRESHOLD
+              value: {{ .Values.env.efficiencyThreshold | quote }}
+            - name: REDIS_ADDR
+              value: {{ .Values.env.redisAddr | quote }}
+            - name: REDIS_QUEUE
+              value: {{ .Values.env.redisQueue | quote }}
+            - name: CLICKHOUSE_HOST
+              value: {{ .Values.env.clickhouseHost | quote }}
+            - name: CLICKHOUSE_USER
+              value: {{ .Values.env.clickhouseUser  | quote }}
+            - name: CLICKHOUSE_DB
+              value: {{ .Values.env.clickhouseDb | quote }}
+            - name: HOSTNAME
+              value: {{ .Values.env.hostname | quote }}
+            - name: APP_ENV
+              value: {{ .Values.deployEnv | quote }}
+            - name: APP_VERSION
+              value: {{ .Values.appVersion | quote }}
+            - name: REDIS_PASSWORD
+              value: {{ .Values.env.redisPassword | quote }}
+            - name: CLICKHOUSE_PASSWORD
+              value: {{ .Values.env.clickhousePassword | quote }}
+            - name: TELEGRAM_API_KEY
+              value: {{ .Values.env.telegramApiKey | quote}}
+          ports:
+            - containerPort: {{ .Values.containerPort }}
+          resources:
+            limits:
+              cpu: {{ .Values.cpuLimit }}
+              memory: {{ .Values.memoryLimit }}
+            requests:
+              cpu: {{ .Values.cpuRequest }}
+              memory: {{ .Values.memoryRequest }}
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: dockerconfigjson-github-com
